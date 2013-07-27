@@ -1,27 +1,26 @@
-color BG_COLOR = color(255, 160, 160);
+color BG_COLOR = color(240, 240, 240);
+String IMG_URL = "images/paterson-drawing-320x320.png";
+String FLAT_COLOR_BLOCK_URL = "images/white-320x320.png";
 
 
 PImage linesColor;
 PImage fillColor;
 
-PImage linesMask;
 PImage fillMask;
 
 
 void setup()
 {
-	size(640, 360, P2D);
+	size(640, 640, P2D);
 	background(BG_COLOR);
 
-	fillColor = loadImage("white-394x320.png");
-	tint(0, 0, 240);
-
-	fillMask = loadImage("paterson-drawing-394x320.png");
-	noTint();
-
-	linesColor = loadImage("paterson-drawing-394x320.png");
+	// set lines
+	linesColor = loadImage(IMG_URL);
 	linesColor.filter(INVERT);
-	noTint();
+
+	// set fill
+	fillColor = loadImage(FLAT_COLOR_BLOCK_URL);
+	fillMask = loadImage(IMG_URL);
 }
 
 
@@ -29,10 +28,14 @@ void draw()
 {
 	background(BG_COLOR);
 
-	image(linesColor, width * 0.5, height * 0.5);
+	// draw lines
+	// image(linesColor, width * 0.5, height * 0.5);
+	// tint(240, 0, 0);
 
+	// draw colors
 	image(fillColor, width * 0.5, height * 0.5);
 	fillColor.mask(fillMask);
+	tint(0, 0, 240);
 
 	imageMode(CENTER);
 }
